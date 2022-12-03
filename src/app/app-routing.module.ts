@@ -1,3 +1,4 @@
+import { QuestionComponent } from './views/question/question.component';
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
@@ -45,6 +46,7 @@ const routes: Routes = [
   },
   // no layout views
   { path: "profile", component: ProfileComponent },
+  { path: "question/:idTema", component: QuestionComponent },
   { path: "landing", component: LandingComponent },
   { path: "", component: LandingComponent },
   { path: "**", redirectTo: "", pathMatch: "full" },

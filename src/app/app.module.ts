@@ -28,8 +28,6 @@ import { ProfileComponent } from "./views/profile/profile.component";
 
 import { AdminNavbarComponent } from "./components/navbars/admin-navbar/admin-navbar.component";
 import { AuthNavbarComponent } from "./components/navbars/auth-navbar/auth-navbar.component";
-import { CardBarChartComponent } from "./components/cards/card-bar-chart/card-bar-chart.component";
-import { CardLineChartComponent } from "./components/cards/card-line-chart/card-line-chart.component";
 import { CardPageVisitsComponent } from "./components/cards/card-page-visits/card-page-visits.component";
 import { CardProfileComponent } from "./components/cards/card-profile/card-profile.component";
 import { CardSettingsComponent } from "./components/cards/card-settings/card-settings.component";
@@ -48,15 +46,16 @@ import { PagesDropdownComponent } from "./components/dropdowns/pages-dropdown/pa
 import { NotificationDropdownComponent } from "./components/dropdowns/notification-dropdown/notification-dropdown.component";
 import { SidebarComponent } from "./components/sidebar/sidebar.component";
 import { UserDropdownComponent } from "./components/dropdowns/user-dropdown/user-dropdown.component";
+import { QuestionComponent } from './views/question/question.component';
+import { ChangeBgDirective } from "./change-bg.directive";
 import { HttpClientModule } from "@angular/common/http";
 import { CommonModule } from "@angular/common";
 
 @NgModule({
   declarations: [
+    ChangeBgDirective,
     AppComponent,
     DashboardComponent,
-    CardBarChartComponent,
-    CardLineChartComponent,
     IndexDropdownComponent,
     PagesDropdownComponent,
     TableDropdownComponent,
@@ -87,6 +86,7 @@ import { CommonModule } from "@angular/common";
     IndexComponent,
     LandingComponent,
     ProfileComponent,
+    QuestionComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, CommonModule],
   providers: [],
