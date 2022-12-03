@@ -8,6 +8,10 @@ h6{
     font-family: 'Asap', sans-serif !important;
 }
 
-.title__header{
-    color: red;
+html {
+    scroll-behavior: smooth !important; 
 }
+
+/* .title__header{
+    color: red;
+} */
