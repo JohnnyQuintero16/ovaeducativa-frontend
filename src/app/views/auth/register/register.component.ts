@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { RegisterService } from "src/app/services/register.service";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import Swal from "sweetalert2";
 
 @Component({
   selector: "app-register",
@@ -7,35 +9,70 @@ import { RegisterService } from "src/app/services/register.service";
 })
 export class RegisterComponent implements OnInit {
 
-  nombres:string;
-  apellidos:string;
-  correo:string;
-  codigo:string;
-  password:string;
+  newUsuarioForm: FormGroup;
 
-  constructor(private registroService: RegisterService) { }
+  constructor(private registroService: RegisterService,
+    private formBuilder: FormBuilder) { 
+      this.newUsuarioForm = this.formBuilder.group({
+        nombres: ['', Validators.required],
+        apellidos: ['', Validators.required],
+        correo: ['', Validators.required],
+        codigo: ['', Validators.required],
+        password: ['', Validators.required]
+      })
+  }
 
   ngOnInit(): void {}
 
   registrar(){
 
-    let user = {
-      nombres: this.nombres,
-      apellidos: this.apellidos,
-      correo: this.correo,
-      codigo: this.codigo,
-      clave: this.password
-    }
-
-    this.registroService.registrar(user).subscribe(data => {
-      
-      console.log(data);
-      //location.pathname = '';
-
-    }, err => {
-      
-      alert('Ha ocurrido un error');
-     });
+      if(this.newUsuarioForm.status == "VALID"){
+        let user = {
+          nombre: this.newUsuarioForm.get('nombres').value,
+          apellido: this.newUsuarioForm.get('apellidos').value,
+          email: this.newUsuarioForm.get('correo').value,
+          codigo: this.newUsuarioForm.get('codigo').value,
+          clave: this.newUsuarioForm.get('password').value
+        }
+    
+        console.log(user)
+    
+        this.registroService.registrar(user).subscribe(data => {
+          
+          Swal.fire({
+            title: "Procesando datos, un momento...",
+            timer: 2000,
+            didOpen: () =>{
+              Swal.showLoading(null);
+            }
+          }).then((data) => {
+            Swal.fire({
+              title: "Registro exitoso",
+              icon: "success",
+              confirmButtonColor: "green"
+            }).then((data) => {
+              if(data.isConfirmed){
+                location.pathname = '/auth/login';
+              }
+            })
+          });
+    
+        }, err => {
+    
+            Swal.fire({
+              title: "Ha ocurrido un error",
+              text: "Por favor verifica los datos",
+              icon: "error"
+            })
+    
+         });
+      }else{
+        Swal.fire({
+          title: "Ha ocurrido un error",
+          text: "Por favor verifica los datos",
+          icon: "error"
+        })
+      }
 
   }
 }

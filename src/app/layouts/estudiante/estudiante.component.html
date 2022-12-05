@@ -1,0 +1,136 @@
+<div class="navbar">
+  <nz-layout class="navbar">
+    <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+      <div class="navbar__header" style="  height: 32px;
+      background: rgba(255, 255, 255, 0.2);
+      margin: 16px;">
+      </div>
+      <ul nz-menu nzTheme="dark" nzMode="inline">
+
+        <ul class="text-center uppercase font-bold">
+          <li nz-menu-group nzTitle="Contenido temático"></li>
+        </ul>
+
+        <li nz-submenu nzOpen nzTitle="TEMA 1" nzIcon="book">
+          <ul>
+            <li nz-menu-item>Introducción</li>
+            <li nz-submenu nzTitle="Subtema 1">
+              <ul>
+                <li nz-menu-item>Contenido</li>
+                <li nz-menu-item>Actividad</li>
+              </ul>
+            </li>
+            <li nz-submenu nzTitle="Subtema 2">
+              <ul>
+                <li nz-menu-item>Contenido</li>
+                <li nz-menu-item>Actividad</li>
+              </ul>
+            </li>
+            <li nz-menu-item>Evaluación</li>
+          </ul>
+        </li>
+
+        <li nz-submenu nzTitle="TEMA 2" nzIcon="book">
+          <ul>
+            <li nz-menu-item>Introducción</li>
+            <li nz-submenu nzTitle="Subtema 1">
+              <ul>
+                <li nz-menu-item>Contenido</li>
+                <li nz-menu-item>Actividad</li>
+              </ul>
+            </li>
+            <li nz-submenu nzTitle="Subtema 2">
+              <ul>
+                <li nz-menu-item>Contenido</li>
+                <li nz-menu-item>Actividad</li>
+              </ul>
+            </li>
+            <li nz-menu-item>Evaluación</li>
+          </ul>
+        </li>
+
+        <li nz-submenu nzTitle="TEMA 3" nzIcon="book">
+          <ul>
+            <li nz-menu-item>Introducción</li>
+            <li nz-submenu nzTitle="Subtema 1">
+              <ul>
+                <li nz-menu-item>Contenido</li>
+                <li nz-menu-item>Actividad</li>
+              </ul>
+            </li>
+            <li nz-submenu nzTitle="Subtema 2">
+              <ul>
+                <li nz-menu-item>Contenido</li>
+                <li nz-menu-item>Actividad</li>
+              </ul>
+            </li>
+            <li nz-menu-item>Evaluación</li>
+          </ul>
+        </li>
+
+        <li nz-submenu nzTitle="TEMA 4" nzIcon="book">
+          <ul>
+            <li nz-menu-item>Introducción</li>
+            <li nz-submenu nzTitle="Subtema 1">
+              <ul>
+                <li nz-menu-item>Contenido</li>
+                <li nz-menu-item>Actividad</li>
+              </ul>
+            </li>
+            <li nz-submenu nzTitle="Subtema 2">
+              <ul>
+                <li nz-menu-item>Contenido</li>
+                <li nz-menu-item>Actividad</li>
+              </ul>
+            </li>
+            <li nz-menu-item>Evaluación</li>
+          </ul>
+        </li>
+        
+        <li nz-submenu nzTitle="TEMA 5" nzIcon="book">
+          <ul>
+            <li nz-menu-item>Introducción</li>
+            <li nz-submenu nzTitle="Subtema 1">
+              <ul>
+                <li nz-menu-item>Contenido</li>
+                <li nz-menu-item>Actividad</li>
+              </ul>
+            </li>
+            <li nz-submenu nzTitle="Subtema 2">
+              <ul>
+                <li nz-menu-item>Contenido</li>
+                <li nz-menu-item>Actividad</li>
+              </ul>
+            </li>
+            <li nz-menu-item>Evaluación</li>
+          </ul>
+        </li>
+
+        <li nz-menu-item>
+          <span nz-icon nzType="file-done"></span>
+          <span>Cuestionario final</span>
+        </li>
+      </ul>
+    </nz-sider>
+
+    <nz-layout class="navbar">
+      <nz-header>
+        <span
+          class="trigger"
+          nz-icon
+          [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+          (click)="isCollapsed = !isCollapsed"
+        ></span>
+
+      </nz-header>
+
+      <nz-content>
+
+        <router-outlet></router-outlet>
+
+      </nz-content>
+
+    </nz-layout>
+  </nz-layout>
+</div>
+

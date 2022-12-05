@@ -14,7 +14,7 @@
           <div class="text-blueGray-400 text-center mb-3 font-bold">
             <small>Ingrese sus datos</small>
           </div>
-          <form action="">
+          <form method="post" [formGroup]="usuarioForm" (ngSubmit)="logear()">
             <div class="relative w-full mb-3">
               <label for="correo"
                 class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -22,11 +22,15 @@
               >
                 Correo electronico
               </label>
-              <input
+              <input formControlName="correo"
                 type="email"
                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                placeholder="correo@hotmail.com" name="correo" [(ngModel)]="correo"
+                placeholder="correo@hotmail.com"
               />
+              <div *ngIf="usuarioForm.get('correo').hasError('required') && usuarioForm.get('correo').touched"
+              class="ml-2 mt-2 mb-2">
+                  <span>El campo correo <strong>es obligatorio.</strong></span>
+              </div>
             </div>
 
             <div class="relative w-full mb-3">
@@ -36,17 +40,21 @@
               >
                 Contraseña
               </label>
-              <input
+              <input formControlName="password"
                 type="password"
                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                placeholder="************" name="password" [(ngModel)]="password"
+                placeholder="************"
               />
+              <div *ngIf="usuarioForm.get('password').hasError('required') && usuarioForm.get('password').touched"
+              class="ml-2 mt-2 mb-2">
+                  <span>El campo contraseña <strong>es obligatorio.</strong></span>
+              </div>
             </div>
 
             <div class="text-center mt-6">
               <button
                 class="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-                type="button" (click)="logear()"
+                type="submit"
               >
                 Iniciar sesion
               </button>

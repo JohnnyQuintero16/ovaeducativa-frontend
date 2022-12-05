@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
 
-  private apiUrl = '';
+  private apiUrl = 'https://ovaeducativa-backend-production.up.railway.app/estudiante/login';
 
   constructor(private http: HttpClient) { }
 

@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { LoginService } from "src/app/services/login.service";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import Swal from "sweetalert2";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-login",
@@ -7,30 +10,77 @@ import { LoginService } from "src/app/services/login.service";
 })
 export class LoginComponent implements OnInit {
 
-  correo:string;
-  password:string;
+  usuarioForm: FormGroup;
 
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService,
+    private formBuilder: FormBuilder,
+    private router: Router,) {
+      this.usuarioForm = formBuilder.group({
+        correo: ['', Validators.required],
+        password: ['', Validators.required]
+      })
+    }
 
   ngOnInit(): void {}
 
-
   logear(){
-    let user = {
-      correo: this.correo,
-      clave: this.password,
+
+    console.log(this.usuarioForm);
+
+    if((this.usuarioForm.status == "VALID")){
+      let user = {
+        email: this.usuarioForm.get('correo').value,
+        clave: this.usuarioForm.get('password').value
+      }
+
+      this.loginService.login(user).subscribe(data => {
+  
+        Swal.fire({
+          title: "Procesando datos, un momento...",
+          timer: 2000,
+          didOpen: () =>{
+            Swal.showLoading(null);
+          }
+        }).then((data) => {
+          Swal.fire({
+            title: "Inicio exitoso",
+            icon: "success",
+            //confirmButtonColor: "green"
+          }).then((data) => {
+            if(data.isConfirmed){
+              this.router.navigate(['estudiante']);
+              //location.pathname = '/estudiante';
+            }
+          })
+        });
+  
+        localStorage.setItem('usuario', JSON.stringify(data));
+  
+      }, err => {
+  
+          Swal.fire({
+            title: "Ha ocurrido un error",
+            text: "Por favor verifica los datos",
+            icon: "error"
+          })
+  
+       });
+    }else{
+
+      Swal.fire({
+        title: "Ha ocurrido un error",
+        text: "Por favor verifica los datos",
+        icon: "error"
+      })
+
     }
 
-    this.loginService.login(user).subscribe(data => {
-      localStorage.setItem('usuario', JSON.stringify(data));
-      //localStorage.getItem('usuario') meterlo en un json parse al imprimir
-      //https://itelisoft.com/como-utilizar-el-localstorage-en-angula/
-      location.pathname = '';
-    },
-    err =>{
-      console.log(err)
-    }
-    )
+    // let user = {
+    //   email: this.usuarioForm.get('correo').value,
+    //   clave: this.usuarioForm.get('password').value
+    // }
+
+
   }
 
 }

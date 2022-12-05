@@ -8,7 +8,7 @@ import { Observable } from "rxjs";
 })
 export class RegisterService {
 
-  private apiUrl = 'https://google.com';
+  private apiUrl = 'https://ovaeducativa-backend-production.up.railway.app/estudiante/registro';
 
     constructor(private http: HttpClient){
 

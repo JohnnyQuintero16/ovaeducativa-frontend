@@ -20,6 +20,7 @@ import { RegisterComponent } from "./views/auth/register/register.component";
 import { IndexComponent } from "./views/index/index.component";
 import { LandingComponent } from "./views/landing/landing.component";
 import { ProfileComponent } from "./views/profile/profile.component";
+import { EstudianteComponent } from './layouts/estudiante/estudiante.component';
 
 const routes: Routes = [
   // admin views
@@ -34,6 +35,10 @@ const routes: Routes = [
       { path: "", component: LandingComponent },
     ],
   },
+  {
+    path: "estudiante",
+    component: EstudianteComponent,
+  },
   // auth views
   {
     path: "auth",
@@ -41,6 +46,7 @@ const routes: Routes = [
     children: [
       { path: "login", component: LoginComponent },
       { path: "register", component: RegisterComponent },
+      //{ path: "estudiante", component: EstudianteComponent},
       { path: "", redirectTo: "login", pathMatch: "full" },
     ],
   },

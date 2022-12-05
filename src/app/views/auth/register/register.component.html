@@ -31,7 +31,7 @@
             <small>Llene cada uno de los campos con su información</small>
           </div>
 
-          <form method="post">
+          <form method="post" [formGroup]="newUsuarioForm" (ngSubmit)="registrar()">
             <div class="relative w-full mb-3">
               <label for="nombres"
                 class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -39,11 +39,15 @@
               >
                 Nombres
               </label>
-              <input
+              <input formControlName="nombres"
                 type="text"
                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                placeholder="Nombres" name="nombres" [(ngModel)]="nombres"
+                placeholder="Nombres" name="nombres"
               />
+              <div *ngIf="newUsuarioForm.get('nombres')?.hasError('required') && newUsuarioForm.get('nombres').touched"
+              class="ml-2 mt-2 mb-2">
+                  <span>El campo nombres <strong>es obligatorio.</strong></span>
+              </div>
             </div>
 
             <div class="relative w-full mb-3">
@@ -53,25 +57,33 @@
               >
                 Apellidos
               </label>
-              <input
+              <input formControlName="apellidos"
                 type="text"
                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                placeholder="Apellidos" name="apellidos" [(ngModel)]="apellidos"
+                placeholder="Apellidos" name="apellidos"
               />
+              <div *ngIf="newUsuarioForm.get('apellidos')?.hasError('required') && newUsuarioForm.get('apellidos').touched"
+              class="ml-2 mt-2 mb-2">
+                  <span>El campo apellidos <strong>es obligatorio.</strong></span>
+              </div>
             </div>
 
             <div class="relative w-full mb-3">
-              <label for="correo"
+              <label for="correo" 
                 class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                 htmlFor="grid-password"
               >
                 Correo electrónico
               </label>
-              <input
+              <input formControlName="correo"
                 type="email"
                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                placeholder="correo@hotmail.com" name="correo" [(ngModel)]="correo"
+                placeholder="correo@hotmail.com" name="correo"
               />
+              <div *ngIf="newUsuarioForm.get('correo')?.hasError('required') && newUsuarioForm.get('correo').touched"
+              class="ml-2 mt-2 mb-2">
+                  <span>El campo correo <strong>es obligatorio.</strong></span>
+              </div>
             </div>
 
             <div class="relative w-full mb-3">
@@ -81,11 +93,15 @@
               >
                 Código estudiante
               </label>
-              <input
+              <input formControlName="codigo"
                 type="text"
                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                placeholder="1151832" name="codigo" [(ngModel)]="codigo"
+                placeholder="1151832" name="codigo"
               />
+              <div *ngIf="newUsuarioForm.get('codigo')?.hasError('required') && newUsuarioForm.get('codigo').touched"
+              class="ml-2 mt-2 mb-2">
+                  <span>El campo codigo <strong>es obligatorio.</strong></span>
+              </div>
             </div>
 
             <div class="relative w-full mb-3">
@@ -95,14 +111,19 @@
               >
                 Contraseña
               </label>
-              <input
+              <input formControlName="password"
                 type="password"
                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                placeholder="**********" name="password" [(ngModel)]="password">
+                placeholder="**********" name="password">
+                
+                <div *ngIf="newUsuarioForm.get('password')?.hasError('required') && newUsuarioForm.get('password').touched"
+              class="ml-2 mt-2 mb-2">
+                  <span>El campo contraseña <strong>es obligatorio.</strong></span>
+              </div>
             </div>
 
 
-            <div>
+            <!-- <div>
               <label class="inline-flex items-center cursor-pointer">
                 <input
                   id="customCheckLogin"
@@ -116,12 +137,11 @@
                   </a>
                 </span>
               </label>
-            </div>
+            </div> -->
 
             <div class="text-center mt-6">
-              <button
+              <button type="submit"
                 class="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-                type="submit" (click)="registrar()"
               >
                 CREAR CUENTA
               </button>

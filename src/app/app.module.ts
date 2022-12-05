@@ -1,6 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
-import { FormsModule } from '@angular/forms';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -49,7 +49,19 @@ import { UserDropdownComponent } from "./components/dropdowns/user-dropdown/user
 import { QuestionComponent } from './views/question/question.component';
 import { ChangeBgDirective } from "./change-bg.directive";
 import { HttpClientModule } from "@angular/common/http";
-import { CommonModule } from "@angular/common";
+import { CommonModule, registerLocaleData } from "@angular/common";
+
+import {  NZ_I18N, es_ES } from 'ng-zorro-antd/i18n';
+import es from '@angular/common/locales/es';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EstudianteComponent } from './layouts/estudiante/estudiante.component';
+import { NzMenuModule } from "ng-zorro-antd/menu";
+import { NzIconModule } from "ng-zorro-antd/icon";
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NgModule } from "@angular/core";
+
+registerLocaleData(es);
 
 @NgModule({
   declarations: [
@@ -87,9 +99,22 @@ import { CommonModule } from "@angular/common";
     LandingComponent,
     ProfileComponent,
     QuestionComponent,
+    EstudianteComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, CommonModule],
-  providers: [],
+  imports: [
+    BrowserModule, 
+    AppRoutingModule, 
+    HttpClientModule, 
+    FormsModule,
+    CommonModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    NzLayoutModule,
+    NzMenuModule,
+    NzIconModule,
+    NzDropDownModule
+  ],
+  providers: [{ provide: NZ_I18N, useValue: es_ES }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
