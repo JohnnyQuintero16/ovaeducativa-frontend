@@ -29,4 +29,14 @@ export class IndexDropdownComponent implements OnInit {
       }
     );
   }
+
+  //Obtener datos del usuario
+
+  nombreUsuario = this.getNombreUser();
+
+  getNombreUser() {
+    let user = JSON.parse(localStorage.getItem("usuario")).nombre;
+    console.log(user)
+    return user;
+  }
 }

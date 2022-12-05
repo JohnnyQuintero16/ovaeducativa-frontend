@@ -21,6 +21,8 @@ import { IndexComponent } from "./views/index/index.component";
 import { LandingComponent } from "./views/landing/landing.component";
 import { ProfileComponent } from "./views/profile/profile.component";
 import { EstudianteComponent } from './layouts/estudiante/estudiante.component';
+import { TemaComponent } from './views/tema/tema.component';
+=======
 
 const routes: Routes = [
   // admin views
@@ -38,6 +40,10 @@ const routes: Routes = [
   {
     path: "estudiante",
     component: EstudianteComponent,
+    children: [
+      { path: "profile", component: ProfileComponent },
+      { path: "tema/:idTema", component: TemaComponent},
+    ]
   },
   // auth views
   {
@@ -54,6 +60,7 @@ const routes: Routes = [
   { path: "profile", component: ProfileComponent },
   { path: "question/:idTema", component: QuestionComponent },
   { path: "landing", component: LandingComponent },
+  { path: "index", component: IndexComponent },
   { path: "", component: LandingComponent },
   { path: "**", redirectTo: "", pathMatch: "full" },
 ];
